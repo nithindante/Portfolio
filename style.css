@@ -321,6 +321,18 @@ section {
   .p-item { grid-template-columns: 1fr; gap: 0.6rem; justify-items: start; }
   .steps { grid-template-columns: 1fr 1fr; }
   .footer .socials { margin-left: 0; }
+
+  /* tighter vertical rhythm: sections follow their content instead of filling the screen */
+  .hero { padding-top: 5rem; }
+  .about, .awards, .story, .p-hero, .p-cta { min-height: auto; }
+  .connect { min-height: 70vh; gap: 2rem; }
+  .awards { gap: 1.5rem; }
+  .cases, .stories, .p-list, .p-process { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+  .cases .label { margin-bottom: 1.5rem; }
+  .case-list { gap: 1.5rem; }
+  .case-actions { margin-top: 1.5rem; }
+  .story { padding: 1.5rem 0; }
+  .p-process > h2 { margin-bottom: 1.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
