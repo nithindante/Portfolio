@@ -21,10 +21,10 @@ Open http://localhost:3000. Serve over HTTP rather than `file://` so the frame i
 - `style.css` – shared by both pages (nav, layout, typography, Projects page styles).
 - `reveal.js` – IntersectionObserver that adds `.in` to `.reveal` elements for fade-in on scroll; loaded by both pages.
 - `script.js` – scroll-driven frame player for `index.html`:
-  - Preloads the 240 JPGs in `ezgif-25d8413d4b4be6cb-jpg/`. `FRAME_COUNT` must match the file count.
+  - Preloads the 240 JPGs in `ezgif-5bb4a3ff9f632b92-jpg/` and decodes each into an `ImageBitmap` up front so drawing never waits on a JPEG decode (frames not yet decoded fall back to the nearest ready one). `FRAME_COUNT` must match the file count.
   - Maps scroll progress over the **whole page height** to a frame index, so adding or removing content changes how fast the animation plays. The `@media (max-width: 800px)` block in `style.css` removes the `min-height` sizing on most sections and tightens spacing, so mobile pages are shorter and the animation plays faster per swipe.
-  - Eases toward the target frame in a `requestAnimationFrame` loop (`EASE`).
-  - Crops each source frame to rows `CROP_TOP`–`CROP_BOTTOM`, which removes the black bars and watermark. It anchors `cover` fitting at `FOCUS_Y` to keep the face in view on landscape screens.
+  - Eases toward the target frame in a `requestAnimationFrame` loop (`EASE` is the fraction covered per 60 Hz frame, scaled by elapsed time so the feel is the same at any refresh rate).
+  - Crops each source frame to rows `CROP_TOP`–`CROP_BOTTOM`, which removes the watermark at the bottom of each (720×1280 portrait) frame. It anchors `cover` fitting at `FOCUS_Y` to keep the subject in view on landscape screens.
 
 ## Content updates
 
